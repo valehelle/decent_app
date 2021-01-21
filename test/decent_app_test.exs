@@ -65,7 +65,6 @@ defmodule DecentAppTest do
       assert new_balance.coins == 3
     end
 
-
     test "failed" do
       assert DecentApp.call(%Balance{coins: 10}, [
                3,
@@ -85,6 +84,7 @@ defmodule DecentAppTest do
       assert DecentApp.call(%Balance{coins: 10}, ["-"]) == -1
       assert DecentApp.call(%Balance{coins: 10}, ["DUP"]) == -1
       assert DecentApp.call(%Balance{coins: 10}, ["POP"]) == -1
+      assert DecentApp.call(%Balance{coins: 10}, [1, 4, "UNKNOWN"]) == -1
     end
   end
 end
