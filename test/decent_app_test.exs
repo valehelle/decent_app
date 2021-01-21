@@ -9,10 +9,10 @@ defmodule DecentAppTest do
       balance = %Balance{coins: 10}
 
       {new_balance, result} =
-        DecentApp.call(balance, [3, "DUP", "COINS", 5, "+", "NOTHING", "POP", 7, "-", 9])
+        DecentApp.call(balance, [3, "DUP", "COINS", 5, "+", "NOTHING", "POP", 7, "-", 9, 1,"*"])
 
-      assert new_balance.coins == 5
-      assert length(result) > 1
+      assert new_balance.coins == 1
+      assert result == [36]
     end
     
     test "DUP should duplicate the last item in the result list and cost 1 coin" do
