@@ -12,14 +12,10 @@ defmodule DecentApp do
         end
       end)
 
-    if error do
+    if error || balance.coins < 0 do
       -1
     else
-      if balance.coins < 0 do
-        -1
-      else
-        {balance, result}
-      end
+      {balance, result}
     end
   end
 end
