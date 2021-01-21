@@ -55,6 +55,16 @@ defmodule DecentAppTest do
       assert new_balance.coins == 6
     end
 
+    test "*  takes 3 last items from the list, multiply them and replaces them with the result and cost 3 coin" do
+      balance = %Balance{coins: 10}
+
+      {new_balance, result} =
+        DecentApp.call(balance, [1, 4, 3, 8, "*"])
+
+      assert result === [1, 96]
+      assert new_balance.coins == 4
+    end
+
 
     test "failed" do
       assert DecentApp.call(%Balance{coins: 10}, [
