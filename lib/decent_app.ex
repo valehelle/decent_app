@@ -8,42 +8,7 @@ defmodule DecentApp do
         if error do
           {nil, nil, true}
         else
-          is_error =
-            cond do
-
-              length(res) < 1 ->
-                if command == "DUP" || command == "POP" || command == "+" || command == "-" || command == "*" do
-                  true
-                else
-                  false
-                end
-              length(res) < 2 ->
-                if command == "+" || command == "-" || command == "*" do
-                  true
-                else
-                  false
-                end
-
-              is_integer(command) ->
-                if command < 0 || command > 10 do
-                  true
-                else
-                  false
-                end
-
-              command != "NOTHING" && command != "DUP" && command != "POP" && command != "+" &&
-                command != "-" && command != "*" && command != "COINS" && !is_integer(command) ->
-                true
-
-              true ->
-                false
-            end
-          if is_error do
-            {nil, nil, true}
-          else
-            {res, new_balance} = Operation.apply_command(command, res, bal)
-            {new_balance, res, false}
-          end
+            {new_balance, res, is_error} = Operation.apply_command(command, res, bal)
         end
       end)
 
