@@ -41,31 +41,7 @@ defmodule DecentApp do
           if is_error do
             {nil, nil, true}
           else
-            new_balance = %{bal | coins: bal.coins - 1}
-
-            res = Operation.apply_command(command, res)
-
-            new_balance =
-              if command == "COINS" do
-                %{new_balance | coins: new_balance.coins + 6}
-              else
-                new_balance
-              end
-
-            new_balance =
-              if command == "+" do
-                %{new_balance | coins: new_balance.coins - 1}
-              else
-                new_balance
-              end
-
-             new_balance =
-              if command == "*" do
-                %{new_balance | coins: new_balance.coins - 2}
-              else
-                new_balance
-              end
-
+            {res, new_balance} = Operation.apply_command(command, res, bal)
             {new_balance, res, false}
           end
         end
