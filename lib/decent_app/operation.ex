@@ -1,4 +1,19 @@
 defmodule DecentApp.Operation do
+  @moduledoc """
+  This is the Operation module.
+  """
+
+  @doc """
+  Given command it will apply the appopriate function.
+
+  Returns `{balance, list, is_error}`.
+
+  ## Examples
+
+      iex> DecentApp.Balance.apply_command("COINS", list, balance)
+      {balance, list, is_error}
+
+  """
   alias DecentApp.Balance
 
   def apply_command("COINS", list, balance) do
