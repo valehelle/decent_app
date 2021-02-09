@@ -1,4 +1,7 @@
 defmodule DecentApp.Operation do
+
+
+  
   @moduledoc """
   This is the Operation module.
   """
@@ -15,6 +18,7 @@ defmodule DecentApp.Operation do
 
   """
   alias DecentApp.Balance
+
 
   def apply_command("COINS", list, balance) do
     balance = Balance.apply_balance(balance, 5)
@@ -59,6 +63,7 @@ defmodule DecentApp.Operation do
     list = Enum.reverse(list) ++ [first * second * third]
     {balance, list, false}
   end
+  
 
   def apply_command(command, list, balance) when is_integer(command) do
     balance = Balance.apply_balance(balance)

@@ -1,6 +1,7 @@
 defmodule DecentApp do
   alias DecentApp.Balance
-  alias DecentApp.Operation
+  alias DecentApp.Commands
+  alias DecentApp.Hello
 
   def call(%Balance{} = balance, commands) do
     {balance, result, error} =
@@ -8,7 +9,7 @@ defmodule DecentApp do
         if error do
           {nil, nil, true}
         else
-            {new_balance, res, is_error} = Operation.apply_command(command, res, bal)
+            {new_balance, res, is_error} = Commands.run(command, res, bal)
         end
       end)
 
